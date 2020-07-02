@@ -3,3 +3,4 @@
 *.sqlite3
 __pycache__
 _credentials.py
+fabfile.py

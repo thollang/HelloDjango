@@ -39,11 +39,15 @@ def deploy(c):
 
     # 安装依赖，迁移数据库，收集静态文件
     with c.cd(project_root_path):
-        c.run('pip3 install requirements.text')
+        c.run('pip3 install -r requirements.txt')
         c.run('python3 manage.py migrate')
         c.run('python3 manage.py collectstatic --noinput')
 
     # 重新启动应用
     with c.cd(supervisor_conf_path):
+        print("before")
         cmd = 'supervisorctl start {}'.format(supervisor_program_name)
+        print(cmd)
+        print("back")
         c.run(cmd)
+        print('end')
